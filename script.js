@@ -52,16 +52,26 @@ const pictures = [
 ]
 const imageContainer = document.getElementById('image-container')
 
+function setAttributes(element, attributes) {
+    for (let key in attributes) {
+        element.setAttribute(key, attributes[key])
+    }
+}
+
 function displayPics() {
     pictures.forEach((picture) => {
         const item = document.createElement('a')
-        item.setAttribute('href', 'img/'+picture.id+picture.url+'.png')
-        item.setAttribute('target', '_blank')
+        setAttributes(item, {
+            href: 'img/'+picture.id+picture.url+'.png',
+            target: '_blank'
+        })
 
         const image = document.createElement('img')
-        image.setAttribute('src', 'img/'+picture.id+picture.url+'.png')
-        image.setAttribute('alt', picture.title)
-        image.setAttribute('title', picture.title)
+        setAttributes(image, {
+            src: 'img/'+picture.id+picture.url+'.png',
+            alt: picture.title,
+            title: picture.title
+        })
 
         item.appendChild(image)
         imageContainer.appendChild(item)
